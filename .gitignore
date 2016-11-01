@@ -1,0 +1,20 @@
+# Java default extensios
+*.class
+.mtj.tmp/
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
+
+# Eclipse exceptions
+.classpath
+.project
+.settings/
+
+# Maven exceptions
+target/
+
+# IntelliJ exceptions
+*.iml
+.idea/*
