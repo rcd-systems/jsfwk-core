@@ -101,8 +101,12 @@ class RcdHtmlElement extends RcdDomElement {
         return this;
     }
 
+    hasClass(aClass) {
+        return this.classes.indexOf(aClass) != -1;
+    }
+
     addClass(aClass) {
-        if (this.classes.indexOf(aClass) == -1) {
+        if (!this.hasClass(aClass)) {
             this.classes.push(aClass);
             this.setAttribute("class", this.classes.join(' '));
         }
