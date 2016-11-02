@@ -72,7 +72,7 @@ class RcdDomElement extends RcdXmlElement {
         if (parent instanceof RcdDomElement) {
             parent.getDomElement().appendChild(this.getDomElement());
         } else {
-            parent.appendChild(this.getDomElement());
+            (parent ? parent : document.body).appendChild(this.getDomElement());
         }
     }
 
@@ -80,7 +80,7 @@ class RcdDomElement extends RcdXmlElement {
         if (parent instanceof RcdDomElement) {
             parent.getDomElement().removeChild(this.getDomElement());
         } else {
-            parent.removeChild(this.getDomElement());
+            (parent ? parent : document.body).removeChild(this.getDomElement());
         }
     }
 }
@@ -140,6 +140,14 @@ class RcdHtmlElement extends RcdDomElement {
     addClickListener(listener) {
         this.clickListeners.push(listener);
         return this.addEventListener('click', listener);
+    }
+
+    addMouseOverListener(listener) {
+        return this.addEventListener('mouseover', listener);
+    }
+
+    addMouseOutListener(listener) {
+        return this.addEventListener('mouseout', listener);
     }
 
     removeClickListener(listener) {

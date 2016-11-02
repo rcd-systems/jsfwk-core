@@ -21,13 +21,13 @@ class RcdParagraphElement extends RcdPElement {
 }
 
 class RcdTextDivElement extends RcdDivElement {
-    init() {
-        return this.addChild(this.span);
-    }
-
     constructor(text) {
         super();
         this.span = new RcdTextElement(text).init();
+    }
+
+    init() {
+        return this.addChild(this.span);
     }
 }
 
