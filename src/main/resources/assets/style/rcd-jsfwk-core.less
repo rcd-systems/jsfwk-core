@@ -1,71 +1,71 @@
 /* Default values removal */
-body {
+.rcd-html {
+  height: 100%;
+}
+
+.rcd-body {
   margin: 0;
-}
+  height: 100%;
 
-a {
-  text-decoration: none;
-}
+  a {
+    text-decoration: none;
+  }
 
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: 0;
-}
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+  }
 
-html, body {
-  height: 100%
-}
+  header, div, nav {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+  }
 
-header, div, nav {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
+  table {
+    border-collapse: collapse;
+  }
 
-table {
-  border-collapse: collapse;
-}
-
-th {
-  font-weight: 400;
+  th {
+    font-weight: 400;
+  }
 }
 
 /* Colors settings */
 @rcd-background-color: #f9f9f9;
 @rcd-color: #000;
-body {
+.rcd-body {
   background-color: @rcd-background-color;
   color: @rcd-color;
 }
 
 /* Text settings */
-html {
-  font-size: 62.5%;
-}
-
-@rcd-font-size: 1.4rem;
-body {
-  font-size: @rcd-font-size;
-}
-
+@rcd-font-size: 14px;
 @rcd-font-family: Arial, sans-serif;
-body, select {
+.rcd-body {
+  font-size: @rcd-font-size;
   font-family: @rcd-font-family;
+
+  select {
+    font-family: @rcd-font-family;
+  }
+
+  span {
+    white-space: pre;
+  }
+
+  .rcd-hidden {
+    display: none !important;
+  }
+
+  .rcd-core-clickable {
+    cursor: pointer;
+  }
 }
 
-span {
-  white-space: pre;
-}
 
-.rcd-hidden {
-  display: none !important;
-}
-
-.rcd-core-clickable {
-  cursor: pointer;
-}
 
 
 
