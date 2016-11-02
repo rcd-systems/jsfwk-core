@@ -180,6 +180,13 @@ class RcdHtmlElement extends RcdDomElement {
         this.setAttribute('title', tooltip);
         return this;
     }
+
+    setPosition(left, top) {
+        this.domElement.style.position = 'absolute';
+        this.domElement.style.left = left + 'px';
+        this.domElement.style.top = top + 'px';
+        return this;
+    }
 }
 
 class RcdDivElement extends RcdHtmlElement {
