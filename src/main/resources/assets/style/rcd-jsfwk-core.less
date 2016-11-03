@@ -11,6 +11,18 @@
     text-decoration: none;
   }
 
+  input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background: none;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
   select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -48,7 +60,7 @@
   font-size: @rcd-font-size;
   font-family: @rcd-font-family;
 
-  select {
+  select, input {
     font-family: @rcd-font-family;
   }
 

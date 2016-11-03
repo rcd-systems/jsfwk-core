@@ -281,6 +281,10 @@ class RcdInputElement extends RcdHtmlElement {
     constructor() {
         super('input');
     }
+
+    getValue() {
+        return this.domElement.value;
+    }
 }
 
 
