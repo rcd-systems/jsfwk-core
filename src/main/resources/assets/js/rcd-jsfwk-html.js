@@ -68,19 +68,19 @@ class RcdDomElement extends RcdXmlElement {
         this.domElement.innerHTML = '';
     }
 
-    show(parent) {
+    show(parent = document.body) {
         if (parent instanceof RcdDomElement) {
             parent.getDomElement().appendChild(this.getDomElement());
         } else {
-            (parent ? parent : document.body).appendChild(this.getDomElement());
+            parent.appendChild(this.getDomElement());
         }
     }
 
-    hide(parent) {
+    hide(parent = document.body) {
         if (parent instanceof RcdDomElement) {
             parent.getDomElement().removeChild(this.getDomElement());
         } else {
-            (parent ? parent : document.body).removeChild(this.getDomElement());
+            parent.removeChild(this.getDomElement());
         }
     }
 }

@@ -1,9 +1,9 @@
-function toRcdDateTimeFormat(date) {
-    return "" + date.getFullYear() +
-           toDoubleDigitFormat(date.getMonth() + 1) +
-           toDoubleDigitFormat(date.getDate()) +
-           toDoubleDigitFormat(date.getHours()) +
-           toDoubleDigitFormat(date.getMinutes()) +
+function toLocalDateTimeFormat(date, dateSeparator = '-', timeSeparator = ':') {
+    return "" + date.getFullYear() + dateSeparator +
+           toDoubleDigitFormat(date.getMonth() + 1) + dateSeparator +
+           toDoubleDigitFormat(date.getDate()) + 'T' +
+           toDoubleDigitFormat(date.getHours()) + timeSeparator +
+           toDoubleDigitFormat(date.getMinutes()) + timeSeparator +
            toDoubleDigitFormat(date.getSeconds());
 }
 
