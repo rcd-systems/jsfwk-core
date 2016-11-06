@@ -3,7 +3,15 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>systems.rcd.js.fwk.core</groupId>
   <artifactId>rcd-jsfwk-core</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>Rcd Javascript Framework Core</name>
   <description>Rcd Javascript Framework Core</description>
+
+  <distributionManagement>
+    <repository>
+      <id>bintray-rcd-systems-rcd-repo</id>
+      <name>rcd-systems-rcd-repo</name>
+      <url>https://api.bintray.com/maven/rcd-systems/rcd-repo/rcd-jsfwk-core/;publish=1</url>
+    </repository>
+  </distributionManagement>
 </project>
