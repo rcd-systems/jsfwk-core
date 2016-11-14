@@ -151,6 +151,10 @@ class RcdHtmlElement extends RcdDomElement {
         return this.addEventListener('mouseout', listener);
     }
 
+    addChangeListener(listener) {
+        return this.addEventListener('change', listener);
+    }
+    
     removeClickListener(listener) {
         var index = this.clickListeners.indexOf(listener);
         if (index > -1) {
