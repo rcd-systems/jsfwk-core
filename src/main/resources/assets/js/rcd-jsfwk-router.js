@@ -37,6 +37,10 @@ class RcdHistoryRouter {
         return location.hash && location.hash.substring(1);
     }
 
+    refreshState() {
+        this.setState(this.getCurrentState());
+    }
+
     getParameters() {
         var currentState = this.getCurrentState();
         var parametersIndex = currentState.indexOf("?");
