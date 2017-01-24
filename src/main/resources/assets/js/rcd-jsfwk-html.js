@@ -64,6 +64,12 @@ class RcdDomElement extends RcdXmlElement {
         return this;
     }
 
+    removeAllChildren() {
+        var children = this.children.slice();
+        children.forEach((child) => this.removeChild(child));
+        return this;
+    }
+
     clear() {
         this.domElement.innerHTML = '';
     }
