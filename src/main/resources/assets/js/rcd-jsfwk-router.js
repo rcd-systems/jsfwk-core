@@ -2,7 +2,9 @@ class RcdHistoryRouter {
     constructor() {
         this.routes = {};
         this.defaultRoute;
-        window.onpopstate = (event) => this.setState(event.state);
+        window.onpopstate = (event) => {
+            this.refreshState();
+        };
     }
 
     init() {
