@@ -160,7 +160,7 @@ class RcdHtmlElement extends RcdDomElement {
     addChangeListener(listener) {
         return this.addEventListener('change', listener);
     }
-    
+
     removeClickListener(listener) {
         var index = this.clickListeners.indexOf(listener);
         if (index > -1) {
@@ -276,6 +276,12 @@ class RcdTheadElement extends RcdHtmlElement {
 class RcdTbodyElement extends RcdHtmlElement {
     constructor() {
         super('tbody');
+    }
+}
+
+class RcdTfootElement extends RcdHtmlElement {
+    constructor() {
+        super('tfoot');
     }
 }
 
