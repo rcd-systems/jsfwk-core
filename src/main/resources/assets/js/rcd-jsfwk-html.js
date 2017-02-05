@@ -313,6 +313,55 @@ class RcdFormElement extends RcdHtmlElement {
     }
 }
 
+
+class RcdSelectElement extends RcdHtmlElement {
+    constructor() {
+        super('select');
+        this.options = [];
+    }
+
+    addOptions(optionTexts) {
+        optionTexts.forEach(optionText => this.addOption(optionText));
+        return this;
+    }
+
+    addOption(optionText) {
+        var optionElement = this.createOptionElement(optionText);
+        this.options.push(optionElement);
+        return this.addChild(optionElement)
+    }
+
+    createOptionElement(optionText) {
+        return new RcdOptionElement(optionText).
+            init().
+            setValue(optionText).
+            setText(optionText);
+    }
+
+    getSelectedIndex() {
+        return this.domElement.selectedIndex
+    }
+
+    getValue() {
+        return this.options[this.getSelectedIndex()].getValue();
+    }
+}
+
+class RcdOptionElement extends RcdHtmlElement {
+    constructor() {
+        super('option');
+    }
+
+    getValue() {
+        return this.domElement.value;
+    }
+
+    setValue(value) {
+        this.domElement.value = value;
+        return this;
+    }
+}
+
 class RcdInputElement extends RcdHtmlElement {
     constructor(placeholder) {
         super('input');
