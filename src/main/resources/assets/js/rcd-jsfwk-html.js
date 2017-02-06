@@ -211,6 +211,14 @@ class RcdHtmlElement extends RcdDomElement {
         this.domElement.focus();
         return this;
     }
+
+    display(display) {
+        if (display) {
+            this.removeClass('rcd-hidden');
+        } else {
+            this.addClass('rcd-hidden');
+        }
+    }
 }
 
 class RcdDivElement extends RcdHtmlElement {
