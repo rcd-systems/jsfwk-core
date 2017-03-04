@@ -251,6 +251,18 @@ class RcdIElement extends RcdHtmlElement {
     }
 }
 
+class RcdImgElement extends RcdHtmlElement {
+    constructor(src) {
+        super('img');
+        this.src = src;
+    }
+
+    init() {
+        super.init();
+        return this.setAttribute('src', this.src);
+    }
+}
+
 class RcdSpanElement extends RcdHtmlElement {
     constructor() {
         super('span');
