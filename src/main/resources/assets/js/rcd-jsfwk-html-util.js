@@ -1,22 +1,24 @@
 class RcdTextElement extends RcdSpanElement {
     constructor(text) {
         super();
-        this.tmp = text; //TODO No idea of a proper name
+        this.textBuffer = text;
     }
 
     init() {
-        return this.setText(this.tmp);
+        super.init();
+        return this.setText(this.textBuffer);
     }
 }
 
 class RcdParagraphElement extends RcdPElement {
     constructor(text) {
         super();
-        this.tmp = text; //TODO No idea of a proper name
+        this.textBuffer = text;
     }
 
     init() {
-        return this.setText(this.tmp);
+        super.init();
+        return this.setText(this.textBuffer);
     }
 }
 
@@ -27,6 +29,7 @@ class RcdTextDivElement extends RcdDivElement {
     }
 
     init() {
+        super.init();
         return this.addChild(this.span);
     }
 }

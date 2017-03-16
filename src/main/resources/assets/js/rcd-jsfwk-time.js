@@ -12,7 +12,7 @@ function toDoubleDigitFormat(number) {
 }
 
 function pad(number, characterCount, paddingCharacter) {
-    var result = "" + number;
+    let result = "" + number;
     while (result.length < characterCount) {
         result = paddingCharacter + result;
     }
