@@ -24,8 +24,8 @@ class RcdHistoryRouter {
     setState(state) {
         if (state) {
             history.pushState(state, null, '#' + state);
-            var parametersIndex = state.indexOf("?");
-            var route = parametersIndex == -1 ? state : state.substring(0, parametersIndex);
+            const parametersIndex = state.indexOf("?");
+            const route = parametersIndex == -1 ? state : state.substring(0, parametersIndex);
             this.routes[route]();
         } else {
             this.defaultRoute();
@@ -44,14 +44,14 @@ class RcdHistoryRouter {
     }
 
     getParameters() {
-        var currentState = this.getCurrentState();
-        var parametersIndex = currentState.indexOf("?");
+        const currentState = this.getCurrentState();
+        const parametersIndex = currentState.indexOf("?");
 
-        var parameters = {};
+        const parameters = {};
         if (parametersIndex !== -1) {
-            var parametersString = currentState.substring(parametersIndex + 1);
+            const parametersString = currentState.substring(parametersIndex + 1);
             parametersString.split('&').forEach((parameterEntry) => {
-                var parameterEntryValue = parameterEntry.split('=');
+                const parameterEntryValue = parameterEntry.split('=');
                 parameters[parameterEntryValue[0]] = parameterEntryValue[1];
             });
         }

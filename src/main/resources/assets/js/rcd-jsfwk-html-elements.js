@@ -137,7 +137,7 @@ class RcdSelectElement extends RcdHtmlElement {
     }
 
     addOption(optionText) {
-        let optionElement = this.createOptionElement(optionText);
+        const optionElement = this.createOptionElement(optionText);
         this.options.push(optionElement);
         return this.addChild(optionElement)
     }

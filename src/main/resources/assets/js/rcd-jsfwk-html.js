@@ -28,7 +28,7 @@ class RcdXmlElement {
     }
 
     removeChild(child) {
-        let index = this.children.indexOf(child);
+        const index = this.children.indexOf(child);
         if (index > -1) {
             this.children.splice(index, 1);
         }
@@ -71,7 +71,7 @@ class RcdDomElement extends RcdXmlElement {
     }
 
     removeAllChildren() {
-        let children = this.children.slice();
+        const children = this.children.slice();
         children.forEach((child) => this.removeChild(child));
         return this;
     }
@@ -134,7 +134,7 @@ class RcdHtmlElement extends RcdDomElement {
     }
 
     removeClass(aClass) {
-        let index = this.classes.indexOf(aClass);
+        const index = this.classes.indexOf(aClass);
         if (index !== -1) {
             this.classes.splice(index, 1);
             this.setAttribute("class", this.classes.join(' '));
@@ -157,7 +157,7 @@ class RcdHtmlElement extends RcdDomElement {
 
     removeEventListener(type, listener) {
         if (this.eventListeners[type]) {
-            let index = this.eventListeners[type].indexOf(listener);
+            const index = this.eventListeners[type].indexOf(listener);
             if (index !== -1) {
                 this.eventListeners[type].splice(index, 1);
                 this.domElement.removeEventListener(type, listener);
