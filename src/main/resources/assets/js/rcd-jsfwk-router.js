@@ -2,9 +2,7 @@ class RcdHistoryRouter {
     constructor() {
         this.routes = {};
         this.defaultRoute;
-        window.onpopstate = (event) => {
-            this.refreshState();
-        };
+        window.onpopstate = (popstateEvent) => this.notify(popstateEvent.state);
     }
 
     init() {
@@ -16,31 +14,33 @@ class RcdHistoryRouter {
         return this;
     }
 
-    addRoute(route, callback) {
-        this.routes[route] = callback;
+    addRoute(state, callback) {
+        this.routes[state] = callback;
         return this;
     }
 
     setState(state) {
         if (state) {
             history.pushState(state, null, '#' + state);
+        } else {
+            history.pushState(state, null, '#');
+        }
+        return this.notify(state);
+    }
+
+    notify(state) {
+        if (state) {
             const parametersIndex = state.indexOf("?");
             const route = parametersIndex == -1 ? state : state.substring(0, parametersIndex);
             this.routes[route]();
         } else {
             this.defaultRoute();
-            history.pushState(state, null, '#');
         }
-
         return this;
     }
 
     getCurrentState() {
         return location.hash && location.hash.substring(1);
-    }
-
-    refreshState() {
-        this.setState(this.getCurrentState());
     }
 
     getParameters() {
