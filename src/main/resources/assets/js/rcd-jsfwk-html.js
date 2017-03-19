@@ -23,7 +23,9 @@ class RcdXmlElement {
     }
 
     addChild(child) {
-        this.children.push(child);
+        if (child) {
+            this.children.push(child);
+        }
         return this;
     }
 
@@ -60,7 +62,9 @@ class RcdDomElement extends RcdXmlElement {
 
     addChild(child) {
         super.addChild(child);
-        this.domElement.appendChild(child.getDomElement());
+        if (child) {
+            this.domElement.appendChild(child.getDomElement());
+        }
         return this;
     }
 
