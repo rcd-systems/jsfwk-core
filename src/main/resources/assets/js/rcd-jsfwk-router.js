@@ -1,12 +1,20 @@
 class RcdHistoryRouter {
     constructor() {
         this.routes = {};
-        this.defaultRoute;
+        this.defaultRoute = () => {
+        };
         window.onpopstate = (popstateEvent) => this.notify(popstateEvent.state);
     }
 
     init() {
         return this;
+    }
+
+    static getInstance() {
+        if (!RcdHistoryRouter.instance) {
+            RcdHistoryRouter.instance = new RcdHistoryRouter().init();
+        }
+        return RcdHistoryRouter.instance;
     }
 
     addDefaultRoute(callback) {
@@ -32,7 +40,9 @@ class RcdHistoryRouter {
         if (state) {
             const parametersIndex = state.indexOf("?");
             const route = parametersIndex == -1 ? state : state.substring(0, parametersIndex);
-            this.routes[route]();
+            if (this.routes[route]) {
+                this.routes[route]();
+            }
         } else {
             this.defaultRoute();
         }

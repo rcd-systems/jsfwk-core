@@ -154,7 +154,7 @@ class RcdHtmlElement extends RcdDomElement {
         if (!this.hasEventListener(type, listener)) {
             this.eventListeners[type] = this.eventListeners[type] || [];
             this.eventListeners[type].push(listener);
-            this.domElement.addEventListener(type, listener);
+            this.domElement.addEventListener(type, (event) => listener(this, event));
         }
         return this;
     }
