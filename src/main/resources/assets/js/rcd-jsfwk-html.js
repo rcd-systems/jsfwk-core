@@ -114,6 +114,7 @@ class RcdHtmlElement extends RcdDomElement {
         super(name);
         this.classes = [];
         this.eventListeners = {};
+        this.eventListenerWrappers = {};
     }
 
     init() {
@@ -154,7 +155,11 @@ class RcdHtmlElement extends RcdDomElement {
         if (!this.hasEventListener(type, listener)) {
             this.eventListeners[type] = this.eventListeners[type] || [];
             this.eventListeners[type].push(listener);
-            this.domElement.addEventListener(type, (event) => listener(this, event));
+
+            let wrapper = (event) => listener(this, event);
+            this.eventListenerWrappers[type] = this.eventListenerWrappers[type] || [];
+            this.eventListeners[type].push(wrapper);
+            this.domElement.addEventListener(type, wrapper);
         }
         return this;
     }
@@ -164,7 +169,8 @@ class RcdHtmlElement extends RcdDomElement {
             const index = this.eventListeners[type].indexOf(listener);
             if (index !== -1) {
                 this.eventListeners[type].splice(index, 1);
-                this.domElement.removeEventListener(type, listener);
+                let wrapper = this.eventListenerWrappers[type].splice(index, 1)[0];
+                this.domElement.removeEventListener(type, wrapper);
             }
         }
         return this;
