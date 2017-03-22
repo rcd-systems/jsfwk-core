@@ -1,0 +1,22 @@
+
+Why another framework?
+- All current frameworks seem to be template/html driven.
+    A proper framework should only manipulate the DOM without having to write html.
+    It should also not have to search by ID and classes and instead have a direct reference to it.
+- No invention of a whole new language that would be converted into another...
+    ES6 has enough nice features and I do not think including all the build/debug time/complexity is worth having a typed system.
+- Can be adapted to need
+
+Some rules to follow in this library and extensions
+- Wrap the DOM element. And manipulate these wrappers instead.
+- Object construction
+  - Constructor: Take everything mandatory and optional final.
+  - Setter: For everything dynamic
+- Parameters should be contained inside a params object if their number > 2.
+    It avoids imposing an order and simplifies the call when params are optional.
+    >2 will not handicap most of your functions. (But of course we can discuss this threshold)
+- Void functions, especially setters, should return the current object to be able to chain easily.
+Example: new RcdXXX(params).
+    init().
+    setA('A').
+    setB('b');
