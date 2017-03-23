@@ -17,7 +17,7 @@ class RcdHistoryRouter {
         return RcdHistoryRouter.instance;
     }
 
-    addDefaultRoute(callback) {
+    setDefaultRoute(callback) {
         this.defaultRoute = callback;
         return this;
     }
