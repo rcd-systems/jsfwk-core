@@ -32,6 +32,10 @@ class RcdTextDivElement extends RcdDivElement {
         super.init();
         return this.addChild(this.span);
     }
+
+    setText(text) {
+        this.span.setText(text);
+    }
 }
 
 class RcdParagraphDivElement extends RcdDivElement {
