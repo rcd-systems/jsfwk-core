@@ -22,6 +22,12 @@ class RcdHeaderElement extends RcdHtmlElement {
     }
 }
 
+class RcdFooterElement extends RcdHtmlElement {
+    constructor() {
+        super('footer');
+    }
+}
+
 class RcdIElement extends RcdHtmlElement {
     constructor() {
         super('i');

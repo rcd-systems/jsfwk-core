@@ -14,8 +14,14 @@ Some rules to follow in this library and extensions
   - Setter: For everything dynamic
 - Parameters should be contained inside a params object if their number > 2.
     It avoids imposing an order and simplifies the call when params are optional.
-    >2 will not handicap most of your functions. (But of course we can discuss this threshold)
+    >2 will not handicap most of your functions. (But of course we can discuss this threshold).
+   Alternative could be one/two normal parameters and pass the rest inside an options object as second/third param
 - Void functions, especially setters, should return the current object to be able to chain easily.
+        init(): Init the object and call required non private methods
+        addXXX(...): Add/Creates a sub object on called object. Return called object
+        setXXX(...): Add/Creates a sub object and replace existing on called object. Return called object.
+        createXXX(...?): Create a sub object on called object. Return created sub object.
+        getXX(): Return sub object
 Example: new RcdXXX(params).
     init().
     setA('A').
