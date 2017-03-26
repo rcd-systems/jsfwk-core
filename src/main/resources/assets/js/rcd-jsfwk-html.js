@@ -241,9 +241,9 @@ class RcdHtmlElement extends RcdDomElement {
 
     show(show) {
         if (show) {
-            this.removeClass('rcd-hidden');
+            return this.removeClass('rcd-hidden');
         } else {
-            this.addClass('rcd-hidden');
+            return this.addClass('rcd-hidden');
         }
     }
 }
