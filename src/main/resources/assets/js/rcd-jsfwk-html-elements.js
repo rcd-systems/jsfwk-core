@@ -190,5 +190,29 @@ class RcdInputElement extends RcdHtmlElement {
     }
 }
 
+class RcdSectionElement extends RcdHtmlElement {
+    constructor() {
+        super('section');
+    }
+}
+
+class RcdArticleElement extends RcdHtmlElement {
+    constructor() {
+        super('article');
+    }
+}
+
+class RcdH1Element extends RcdHtmlElement {
+    constructor() {
+        super('h1');
+    }
+}
+
+class RcdH2Element extends RcdHtmlElement {
+    constructor() {
+        super('h2');
+    }
+}
+
 
 
