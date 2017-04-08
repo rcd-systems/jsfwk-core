@@ -199,7 +199,7 @@ class RcdHtmlElement extends RcdDomElement {
     addKeyUpListener(key, listener) {
         return this.addEventListener('keyup', (source, event)=> {
             if (!key || key === event.key) {
-                listener(event);
+                listener(source, event);
             }
         });
     }
