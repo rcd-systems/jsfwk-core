@@ -49,6 +49,10 @@ class RcdHistoryRouter {
         return this;
     }
 
+    refreshState() {
+        this.setState(this.getCurrentState());
+    }
+
     getCurrentState() {
         return location.hash && location.hash.substring(1);
     }
