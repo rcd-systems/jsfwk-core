@@ -3,10 +3,10 @@ class RcdHistoryRouter {
         this.routes = {};
         this.defaultRoute = () => {
         };
-        window.onpopstate = (popstateEvent) => this.notify(popstateEvent.state);
     }
 
     init() {
+        window.onpopstate = (popstateEvent) => RcdHistoryRouter.notify(popstateEvent.state);
         return this;
     }
 
@@ -17,48 +17,48 @@ class RcdHistoryRouter {
         return RcdHistoryRouter.instance;
     }
 
-    setDefaultRoute(callback) {
-        this.defaultRoute = callback;
-        return this;
+    static setDefaultRoute(callback) {
+        RcdHistoryRouter.getInstance().defaultRoute = callback;
+        return RcdHistoryRouter;
     }
 
-    addRoute(state, callback) {
-        this.routes[state] = callback;
-        return this;
+    static addRoute(state, callback) {
+        RcdHistoryRouter.getInstance().routes[state] = callback;
+        return RcdHistoryRouter;
     }
 
-    setState(state) {
+    static setState(state) {
         if (state) {
             history.pushState(state, null, '#' + state);
         } else {
             history.pushState(state, null, '#');
         }
-        return this.notify(state);
+        return RcdHistoryRouter.notify(state);
     }
 
-    notify(state) {
+    static notify(state) {
         if (state) {
             const parametersIndex = state.indexOf("?");
             const route = parametersIndex == -1 ? state : state.substring(0, parametersIndex);
-            if (this.routes[route]) {
-                this.routes[route]();
+            if (RcdHistoryRouter.getInstance().routes[route]) {
+                RcdHistoryRouter.getInstance().routes[route]();
             }
         } else {
-            this.defaultRoute();
+            RcdHistoryRouter.getInstance().defaultRoute();
         }
-        return this;
+        return RcdHistoryRouter;
     }
 
-    refreshState() {
-        this.setState(this.getCurrentState());
+    static refreshState() {
+        RcdHistoryRouter.setState(RcdHistoryRouter.getCurrentState());
     }
 
-    getCurrentState() {
+    static getCurrentState() {
         return location.hash && location.hash.substring(1);
     }
 
-    getParameters() {
-        const currentState = this.getCurrentState();
+    static getParameters() {
+        const currentState = RcdHistoryRouter.getCurrentState();
         const parametersIndex = currentState.indexOf("?");
 
         const parameters = {};
