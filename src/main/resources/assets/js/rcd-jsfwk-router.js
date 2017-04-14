@@ -6,7 +6,7 @@ class RcdHistoryRouter {
     }
 
     init() {
-        window.onpopstate = (popstateEvent) => RcdHistoryRouter.notify(popstateEvent.state);
+        window.onpopstate = () => RcdHistoryRouter.refresh();
         return this;
     }
 
@@ -49,8 +49,8 @@ class RcdHistoryRouter {
         return RcdHistoryRouter;
     }
 
-    static refreshState() {
-        RcdHistoryRouter.setState(RcdHistoryRouter.getCurrentState());
+    static refresh() {
+        RcdHistoryRouter.notify(RcdHistoryRouter.getCurrentState());
     }
 
     static getCurrentState() {
