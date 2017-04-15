@@ -227,10 +227,20 @@ class RcdHtmlElement extends RcdDomElement {
         return this;
     }
 
-    setPosition(left, top) {
+    setPosition(params) {
         this.domElement.style.position = 'fixed';
-        this.domElement.style.left = left + 'px';
-        this.domElement.style.top = top + 'px';
+        if (params.left !== undefined) {
+            this.domElement.style.left = params.left + 'px';
+        }
+        if (params.right !== undefined) {
+            this.domElement.style.right = params.right + 'px';
+        }
+        if (params.top !== undefined) {
+            this.domElement.style.top = params.top + 'px';
+        }
+        if (params.bottom !== undefined) {
+            this.domElement.style.bottom = params.bottom + 'px';
+        }
         return this;
     }
 
