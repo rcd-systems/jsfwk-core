@@ -227,6 +227,16 @@ class RcdHtmlElement extends RcdDomElement {
         return this;
     }
 
+    setWidth(width) {
+        this.domElement.style.width = width + 'px';
+        return this;
+    }
+
+    setHeight(height) {
+        this.domElement.style.height = height + 'px';
+        return this;
+    }
+
     setPosition(params) {
         this.domElement.style.position = params.position || 'fixed';
         if (params.left !== undefined) {
