@@ -228,7 +228,7 @@ class RcdHtmlElement extends RcdDomElement {
     }
 
     setPosition(params) {
-        this.domElement.style.position = 'fixed';
+        this.domElement.style.position = params.position || 'fixed';
         if (params.left !== undefined) {
             this.domElement.style.left = params.left + 'px';
         }
