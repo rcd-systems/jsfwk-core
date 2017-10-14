@@ -62,6 +62,33 @@ class RcdDomElement extends RcdXmlElement {
         this.parent = undefined;
         return this;
     }
+
+    addEventListener(type, listener) {
+        this.domElement.addEventListener(type, listener);
+        return this;
+    }
+
+    removeEventListener(type, listener) {
+        this.domElement.removeEventListener(type, listener);
+        return this;
+    }
+
+    click() {
+        this.domElement.click();
+        return this;
+    }
+
+    focus() {
+        this.domElement.focus();
+        return this;
+    }
+    
+    setStyle(properties) {
+        for(const propertyName in properties) {
+            this.domElement.style[propertyName] = properties[propertyName];
+        }
+        return this;
+    }
 }
 
 class RcdHtmlElement extends RcdDomElement {
@@ -114,7 +141,7 @@ class RcdHtmlElement extends RcdDomElement {
             let wrapper = (event) => listener(this, event);
             this.eventListenerWrappers[type] = this.eventListenerWrappers[type] || [];
             this.eventListenerWrappers[type].push(wrapper);
-            this.domElement.addEventListener(type, wrapper);
+            super.addEventListener(type, wrapper);
         }
         return this;
     }
@@ -125,7 +152,7 @@ class RcdHtmlElement extends RcdDomElement {
             if (index !== -1) {
                 this.eventListeners[type].splice(index, 1);
                 let wrapper = this.eventListenerWrappers[type].splice(index, 1)[0];
-                this.domElement.removeEventListener(type, wrapper);
+                super.removeEventListener(type, wrapper);
             }
         }
         return this;
@@ -171,66 +198,15 @@ class RcdHtmlElement extends RcdDomElement {
         });
     }
 
-    click() {
-        this.getDomElement().click();
-        return this;
-    }
-
-    isSelected() {
-        return this.hasClass('selected');
-    }
-
-    select(selected) {
-        if (selected) {
-            this.addClass('selected');
-        } else {
-            this.removeClass('selected');
-        }
-        return this;
-    }
-    
-    setTooltip(tooltip) {
-        this.setAttribute('title', tooltip);
-        return this;
-    }
-
-    setWidth(width) {
-        this.domElement.style.width = width + 'px';
-        return this;
-    }
-
-    setHeight(height) {
-        this.domElement.style.height = height + 'px';
-        return this;
-    }
-
-    setPosition(params) {
-        this.domElement.style.position = params.position || 'fixed';
-        if (params.left !== undefined) {
-            this.domElement.style.left = params.left + 'px';
-        }
-        if (params.right !== undefined) {
-            this.domElement.style.right = params.right + 'px';
-        }
-        if (params.top !== undefined) {
-            this.domElement.style.top = params.top + 'px';
-        }
-        if (params.bottom !== undefined) {
-            this.domElement.style.bottom = params.bottom + 'px';
-        }
-        return this;
-    }
-
-    focus() {
-        this.domElement.focus();
-        return this;
-    }
-
-    show(show) {
+    show(show=true) {
         if (show) {
             return this.removeClass('rcd-hidden');
         } else {
             return this.addClass('rcd-hidden');
         }
+    }
+    
+    hide() {
+        this.show(false);
     }
 }
