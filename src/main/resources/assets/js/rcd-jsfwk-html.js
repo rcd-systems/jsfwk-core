@@ -143,12 +143,24 @@ class RcdHtmlElement extends RcdDomElement {
         return this.addEventListener('mouseover', listener);
     }
 
+    removeMouseOverListener(listener) {
+        return this.removeEventListener('mouseover', listener);
+    }
+
     addMouseOutListener(listener) {
         return this.addEventListener('mouseout', listener);
     }
 
+    removeMouseOutListener(listener) {
+        return this.removeEventListener('mouseout', listener);
+    }
+
     addChangeListener(listener) {
         return this.addEventListener('change', listener);
+    }
+
+    removeChangeListener(listener) {
+        return this.removeEventListener('change', listener);
     }
 
     addKeyUpListener(key, listener) {
@@ -157,6 +169,11 @@ class RcdHtmlElement extends RcdDomElement {
                 listener(source, event);
             }
         });
+    }
+
+    click() {
+        this.getDomElement().click();
+        return this;
     }
 
     isSelected() {
@@ -171,12 +188,7 @@ class RcdHtmlElement extends RcdDomElement {
         }
         return this;
     }
-
-    click() {
-        this.getDomElement().click();
-        return this;
-    }
-
+    
     setTooltip(tooltip) {
         this.setAttribute('title', tooltip);
         return this;
