@@ -1,5 +1,6 @@
-class RcdHistoryRouter {
+class RcdHistoryRouter extends RcdObject{
     constructor() {
+        super();
         this.routes = {};
         this.defaultRoute = () => {
         };

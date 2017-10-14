@@ -1,4 +1,4 @@
-class RcdXmlElement  extends RcdElement {
+class RcdXmlElement  extends RcdObject {
     constructor(tagName) {
         super();
         this.tagName = tagName;

@@ -1,4 +1,4 @@
-class RcdElement {
+class RcdObject {
     constructor() {
     }
 
