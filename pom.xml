@@ -9,6 +9,8 @@
 
   <build>
     <plugins>
+
+      <!-- JS Merge -->
       <plugin>
         <groupId>org.zcore.maven</groupId>
         <artifactId>merge-maven-plugin</artifactId>
@@ -39,6 +41,8 @@
           </execution>
         </executions>
       </plugin>
+
+      <!-- LESS compilation -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -55,6 +59,28 @@
               <arguments>
                 <argument>${project.basedir}/src/main/resources/assets/style/rcd-jsfwk-core.less</argument>
                 <argument>${project.basedir}/target/classes/assets/style/rcd-jsfwk-core.css</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Demo launch -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2</version>
+        <executions>
+          <execution>
+            <id>demo</id>
+            <phase>test</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>open</executable>
+              <arguments>
+                <argument>${project.basedir}/target/test-classes/assets/demo/rcd-jsfwk-core-demo.html</argument>
               </arguments>
             </configuration>
           </execution>
