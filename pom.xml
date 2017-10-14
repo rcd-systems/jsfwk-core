@@ -25,6 +25,8 @@
                 <merger>
                   <target>${project.basedir}/target/classes/assets/js/rcd-jsfwk-core.js</target>
                   <sources>
+                    <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-base.js</source>
+                    <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-xml.js</source>
                     <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-html.js</source>
                     <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-html-elements.js</source>
                     <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-html-util.js</source>

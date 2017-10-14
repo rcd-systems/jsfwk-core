@@ -112,7 +112,7 @@ class RcdFormElement extends RcdHtmlElement {
     }
 
     submit() {
-        this.getDomElement().submit();
+        this.domElement.submit();
     }
 }
 
@@ -137,15 +137,15 @@ class RcdSelectElement extends RcdHtmlElement {
         this.options = [];
     }
 
-    addOptions(optionTexts) {
-        optionTexts.forEach(optionText => this.addOption(optionText));
-        return this;
-    }
-
     addOption(optionText) {
         const optionElement = this.createOptionElement(optionText);
         this.options.push(optionElement);
         return this.addChild(optionElement)
+    }
+
+    addOptions(optionTexts) {
+        optionTexts.forEach(optionText => this.addOption(optionText));
+        return this;
     }
 
     createOptionElement(optionText) {
@@ -159,20 +159,15 @@ class RcdSelectElement extends RcdHtmlElement {
         return this.domElement.selectedIndex
     }
 
-    getValue() {
+    getSelectedValue() {
         return this.options[this.getSelectedIndex()].getValue();
     }
 }
 
 class RcdInputElement extends RcdHtmlElement {
-    constructor(placeholder) {
+    constructor() {
         super('input');
-        this.placeholder = placeholder
-    }
-
-    init() {
-        this.domElement.placeholder = this.placeholder;
-        return this;
+        this.placeholder;
     }
 
     getValue() {
@@ -181,6 +176,16 @@ class RcdInputElement extends RcdHtmlElement {
 
     setValue(value) {
         this.domElement.value = value;
+        return this;
+    }
+    
+    setPlaceholder(placeholder) {
+        this.placeholder = placeholder;
+        this.domElement.placeholder = placeholder;
+    }
+
+    click() {
+        this.domElement.click();
         return this;
     }
 

@@ -5,10 +5,6 @@ class RcdDomElement extends RcdXmlElement {
         this.parent;
     }
 
-    getDomElement() {
-        return this.domElement;
-    }
-
     setAttribute(key, value) {
         super.setAttribute(key, value);
         this.domElement.setAttribute(key, value);
@@ -24,14 +20,14 @@ class RcdDomElement extends RcdXmlElement {
     addChild(child) {
         super.addChild(child);
         if (child) {
-            this.domElement.appendChild(child.getDomElement());
+            this.domElement.appendChild(child.domElement);
         }
         return this;
     }
 
     removeChild(child) {
         super.removeChild(child);
-        this.domElement.removeChild(child.getDomElement());
+        this.domElement.removeChild(child.domElement);
         return this;
     }
 
@@ -45,7 +41,7 @@ class RcdDomElement extends RcdXmlElement {
         if (parent instanceof RcdDomElement) {
             parent.addChild(this);
         } else {
-            parent.appendChild(this.getDomElement());
+            parent.appendChild(this.domElement);
         }
         this.parent = parent;
         return this;
@@ -56,7 +52,7 @@ class RcdDomElement extends RcdXmlElement {
             if (this.parent instanceof RcdDomElement) {
                 this.parent.removeChild(this);
             } else {
-                this.parent.removeChild(this.getDomElement());
+                this.parent.removeChild(this.domElement);
             }
         }
         this.parent = undefined;
@@ -70,11 +66,6 @@ class RcdDomElement extends RcdXmlElement {
 
     removeEventListener(type, listener) {
         this.domElement.removeEventListener(type, listener);
-        return this;
-    }
-
-    click() {
-        this.domElement.click();
         return this;
     }
 
