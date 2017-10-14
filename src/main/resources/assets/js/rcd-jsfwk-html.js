@@ -198,6 +198,6 @@ class RcdHtmlElement extends RcdDomElement {
     }
     
     hide() {
-        this.show(false);
+        return this.show(false);
     }
 }
