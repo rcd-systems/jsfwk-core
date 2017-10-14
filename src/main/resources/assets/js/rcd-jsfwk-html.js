@@ -1,47 +1,8 @@
-class RcdXmlElement {
-    constructor(tagName) {
-        this.tagName = tagName;
-        this.attributes = {};
-        this.text;
-        this.children = [];
-    }
-
-    clear() {
-        this.text;
-        this.children = [];
-        return this;
-    }
-
-    setAttribute(key, value) {
-        this.attributes[key] = value;
-        return this;
-    }
-
-    setText(text) {
-        this.text = text;
-        return this;
-    }
-
-    addChild(child) {
-        if (child) {
-            this.children.push(child);
-        }
-        return this;
-    }
-
-    removeChild(child) {
-        const index = this.children.indexOf(child);
-        if (index > -1) {
-            this.children.splice(index, 1);
-        }
-        return this;
-    }
-}
-
 class RcdDomElement extends RcdXmlElement {
-    constructor(name) {
-        super(name);
-        this.domElement = document.createElement(name);
+    constructor(tagName) {
+        super(tagName);
+        this.domElement = document.createElement(tagName);
+        this.parent;
     }
 
     getDomElement() {
@@ -71,12 +32,6 @@ class RcdDomElement extends RcdXmlElement {
     removeChild(child) {
         super.removeChild(child);
         this.domElement.removeChild(child.getDomElement());
-        return this;
-    }
-
-    removeAllChildren() {
-        const children = this.children.slice();
-        children.forEach((child) => this.removeChild(child));
         return this;
     }
 
@@ -110,8 +65,8 @@ class RcdDomElement extends RcdXmlElement {
 }
 
 class RcdHtmlElement extends RcdDomElement {
-    constructor(name) {
-        super(name);
+    constructor(tagName) {
+        super(tagName);
         this.classes = [];
         this.eventListeners = {};
         this.eventListenerWrappers = {};
