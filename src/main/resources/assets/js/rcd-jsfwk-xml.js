@@ -30,6 +30,13 @@ class RcdXmlElement  extends RcdObject {
         return this;
     }
 
+    addChildren(children) {
+        if (children) {
+            children.forEach(child => this.addChild(child));
+        }
+        return this;
+    }
+
     removeChild(child) {
         const index = this.children.indexOf(child);
         if (index > -1) {
