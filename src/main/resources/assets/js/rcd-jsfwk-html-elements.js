@@ -154,9 +154,19 @@ class RcdSelectElement extends RcdHtmlElement {
             setValue(optionText).
             setText(optionText);
     }
+    
+    selectIndex(index) {
+        this.domElement.selectedIndex = index;
+        return this;
+    }
+
+    selectOption(optionValue) {
+        const index = this.options.findIndex(option => option.getValue() === optionValue);
+        return this.selectIndex(index);
+    }
 
     getSelectedIndex() {
-        return this.domElement.selectedIndex
+        return this.domElement.selectedIndex;
     }
 
     getSelectedValue() {
