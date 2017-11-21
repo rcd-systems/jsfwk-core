@@ -192,6 +192,7 @@ class RcdInputElement extends RcdHtmlElement {
     setPlaceholder(placeholder) {
         this.placeholder = placeholder;
         this.domElement.placeholder = placeholder;
+        return this;
     }
 
     click() {
