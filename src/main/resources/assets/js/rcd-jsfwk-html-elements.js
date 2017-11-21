@@ -131,7 +131,7 @@ class RcdOptionElement extends RcdHtmlElement {
     }
 }
 
-class RcdSelectElement extends RcdHtmlElement {
+class RcdSelectElement extends RcdChangeableElement {
     constructor() {
         super('select');
         this.options = [];
@@ -174,7 +174,7 @@ class RcdSelectElement extends RcdHtmlElement {
     }
 }
 
-class RcdInputElement extends RcdHtmlElement {
+class RcdInputElement extends RcdChangeableElement {
     constructor() {
         super('input');
         this.placeholder;

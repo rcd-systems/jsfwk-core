@@ -173,14 +173,6 @@ class RcdHtmlElement extends RcdDomElement {
         return this.removeEventListener('mouseout', listener);
     }
 
-    addChangeListener(listener) {
-        return this.addEventListener('change', listener);
-    }
-
-    removeChangeListener(listener) {
-        return this.removeEventListener('change', listener);
-    }
-
     addKeyUpListener(key, listener) {
         return this.addEventListener('keyup', (source, event)=> {
             if (!key || key === event.key) {
@@ -199,5 +191,27 @@ class RcdHtmlElement extends RcdDomElement {
     
     hide() {
         return this.show(false);
+    }
+}
+
+class RcdChangeableElement extends RcdHtmlElement {
+    constructor(tagName) {
+        super(tagName);
+    }
+    
+    addChangeListener(listener) {
+        return this.addEventListener('change', listener);
+    }
+
+    removeChangeListener(listener) {
+        return this.removeEventListener('change', listener);
+    }
+
+    addInputListener(listener) {
+        return this.addEventListener('change', listener);
+    }
+
+    removeInputListener(listener) {
+        return this.removeEventListener('change', listener);
     }
 }
