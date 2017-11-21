@@ -208,10 +208,10 @@ class RcdChangeableElement extends RcdHtmlElement {
     }
 
     addInputListener(listener) {
-        return this.addEventListener('change', listener);
+        return this.addEventListener('input', listener);
     }
 
     removeInputListener(listener) {
-        return this.removeEventListener('change', listener);
+        return this.removeEventListener('input', listener);
     }
 }
