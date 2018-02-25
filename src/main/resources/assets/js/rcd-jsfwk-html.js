@@ -157,6 +157,22 @@ class RcdHtmlElement extends RcdDomElement {
         return this.removeEventListener('click', listener);
     }
 
+    addFocusListener(listener) {
+        return this.addEventListener('focus', listener);
+    }
+
+    removeFocusListener(listener) {
+        return this.removeEventListener('focus', listener);
+    }
+
+    addBlurListener(listener) {
+        return this.addEventListener('blur', listener);
+    }
+
+    removeBlurListener(listener) {
+        return this.removeEventListener('blur', listener);
+    }
+
     addMouseOverListener(listener) {
         return this.addEventListener('mouseover', listener);
     }

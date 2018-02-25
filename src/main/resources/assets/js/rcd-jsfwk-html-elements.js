@@ -149,12 +149,9 @@ class RcdSelectElement extends RcdChangeableElement {
     }
 
     createOptionElement(optionText) {
-        return new RcdOptionElement(optionText).
-            init().
-            setValue(optionText).
-            setText(optionText);
+        return new RcdOptionElement(optionText).init().setValue(optionText).setText(optionText);
     }
-    
+
     selectIndex(index) {
         this.domElement.selectedIndex = index;
         return this;
@@ -188,7 +185,39 @@ class RcdInputElement extends RcdChangeableElement {
         this.domElement.value = value;
         return this;
     }
-    
+
+    setPlaceholder(placeholder) {
+        this.placeholder = placeholder;
+        this.domElement.placeholder = placeholder;
+        return this;
+    }
+
+    click() {
+        this.domElement.click();
+        return this;
+    }
+
+    select() {
+        this.domElement.select();
+        return this;
+    }
+}
+
+class RcdTextAreaElement extends RcdChangeableElement {
+    constructor() {
+        super('textarea');
+        this.placeholder;
+    }
+
+    getValue() {
+        return this.domElement.value;
+    }
+
+    setValue(value) {
+        this.domElement.value = value;
+        return this;
+    }
+
     setPlaceholder(placeholder) {
         this.placeholder = placeholder;
         this.domElement.placeholder = placeholder;
