@@ -223,6 +223,16 @@ class RcdTextAreaElement extends RcdChangeableElement {
         this.domElement.placeholder = placeholder;
         return this;
     }
+    
+    setRows(rows) {
+        this.domElement.rows = rows;
+        return this;
+    }
+    
+    setCols(cols) {
+        this.domElement.cols = cols;
+        return this;
+    }
 
     click() {
         this.domElement.click();
