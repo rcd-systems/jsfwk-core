@@ -3,12 +3,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>systems.rcd.js.fwk.core</groupId>
   <artifactId>rcd-jsfwk-core</artifactId>
-  <version>2.0.1</version>
+  <version>3.0.1</version>
   <name>Rcd Javascript Framework Core</name>
   <description>Rcd Javascript Framework Core</description>
 
   <build>
     <plugins>
+
+      <!-- JS Merge -->
       <plugin>
         <groupId>org.zcore.maven</groupId>
         <artifactId>merge-maven-plugin</artifactId>
@@ -25,9 +27,11 @@
                 <merger>
                   <target>${project.basedir}/target/classes/assets/js/rcd-jsfwk-core.js</target>
                   <sources>
+                    <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-base.js</source>
+                    <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-xml.js</source>
                     <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-html.js</source>
                     <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-html-elements.js</source>
-                    <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-html-util.js</source>
+                    <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-html-text.js</source>
                     <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-router.js</source>
                     <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-time.js</source>
                   </sources>
@@ -37,6 +41,8 @@
           </execution>
         </executions>
       </plugin>
+
+      <!-- LESS compilation -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -53,6 +59,28 @@
               <arguments>
                 <argument>${project.basedir}/src/main/resources/assets/style/rcd-jsfwk-core.less</argument>
                 <argument>${project.basedir}/target/classes/assets/style/rcd-jsfwk-core.css</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Demo launch -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2</version>
+        <executions>
+          <execution>
+            <id>demo</id>
+            <phase>test</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>open</executable>
+              <arguments>
+                <argument>${project.basedir}/target/test-classes/assets/demo/rcd-jsfwk-core-demo.html</argument>
               </arguments>
             </configuration>
           </execution>

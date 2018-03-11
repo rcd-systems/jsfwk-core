@@ -112,7 +112,7 @@ class RcdFormElement extends RcdHtmlElement {
     }
 
     submit() {
-        this.getDomElement().submit();
+        this.domElement.submit();
     }
 }
 
@@ -131,15 +131,10 @@ class RcdOptionElement extends RcdHtmlElement {
     }
 }
 
-class RcdSelectElement extends RcdHtmlElement {
+class RcdSelectElement extends RcdChangeableElement {
     constructor() {
         super('select');
         this.options = [];
-    }
-
-    addOptions(optionTexts) {
-        optionTexts.forEach(optionText => this.addOption(optionText));
-        return this;
     }
 
     addOption(optionText) {
@@ -148,31 +143,38 @@ class RcdSelectElement extends RcdHtmlElement {
         return this.addChild(optionElement)
     }
 
+    addOptions(optionTexts) {
+        optionTexts.forEach(optionText => this.addOption(optionText));
+        return this;
+    }
+
     createOptionElement(optionText) {
-        return new RcdOptionElement(optionText).
-            init().
-            setValue(optionText).
-            setText(optionText);
+        return new RcdOptionElement(optionText).init().setValue(optionText).setText(optionText);
+    }
+
+    selectIndex(index) {
+        this.domElement.selectedIndex = index;
+        return this;
+    }
+
+    selectOption(optionValue) {
+        const index = this.options.findIndex(option => option.getValue() === optionValue);
+        return this.selectIndex(index);
     }
 
     getSelectedIndex() {
-        return this.domElement.selectedIndex
+        return this.domElement.selectedIndex;
     }
 
-    getValue() {
+    getSelectedValue() {
         return this.options[this.getSelectedIndex()].getValue();
     }
 }
 
-class RcdInputElement extends RcdHtmlElement {
-    constructor(placeholder) {
+class RcdInputElement extends RcdChangeableElement {
+    constructor() {
         super('input');
-        this.placeholder = placeholder
-    }
-
-    init() {
-        this.domElement.placeholder = this.placeholder;
-        return this;
+        this.placeholder;
     }
 
     getValue() {
@@ -181,6 +183,59 @@ class RcdInputElement extends RcdHtmlElement {
 
     setValue(value) {
         this.domElement.value = value;
+        return this;
+    }
+
+    setPlaceholder(placeholder) {
+        this.placeholder = placeholder;
+        this.domElement.placeholder = placeholder;
+        return this;
+    }
+
+    click() {
+        this.domElement.click();
+        return this;
+    }
+
+    select() {
+        this.domElement.select();
+        return this;
+    }
+}
+
+class RcdTextAreaElement extends RcdChangeableElement {
+    constructor() {
+        super('textarea');
+        this.placeholder;
+    }
+
+    getValue() {
+        return this.domElement.value;
+    }
+
+    setValue(value) {
+        this.domElement.value = value;
+        return this;
+    }
+
+    setPlaceholder(placeholder) {
+        this.placeholder = placeholder;
+        this.domElement.placeholder = placeholder;
+        return this;
+    }
+    
+    setRows(rows) {
+        this.domElement.rows = rows;
+        return this;
+    }
+    
+    setCols(cols) {
+        this.domElement.cols = cols;
+        return this;
+    }
+
+    click() {
+        this.domElement.click();
         return this;
     }
 

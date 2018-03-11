@@ -1,51 +1,8 @@
-class RcdXmlElement {
-    constructor(tagName) {
-        this.tagName = tagName;
-        this.attributes = {};
-        this.text;
-        this.children = [];
-    }
-
-    clear() {
-        this.text;
-        this.children = [];
-        return this;
-    }
-
-    setAttribute(key, value) {
-        this.attributes[key] = value;
-        return this;
-    }
-
-    setText(text) {
-        this.text = text;
-        return this;
-    }
-
-    addChild(child) {
-        if (child) {
-            this.children.push(child);
-        }
-        return this;
-    }
-
-    removeChild(child) {
-        const index = this.children.indexOf(child);
-        if (index > -1) {
-            this.children.splice(index, 1);
-        }
-        return this;
-    }
-}
-
 class RcdDomElement extends RcdXmlElement {
-    constructor(name) {
-        super(name);
-        this.domElement = document.createElement(name);
-    }
-
-    getDomElement() {
-        return this.domElement;
+    constructor(tagName) {
+        super(tagName);
+        this.domElement = document.createElement(tagName);
+        this.parent;
     }
 
     setAttribute(key, value) {
@@ -63,20 +20,14 @@ class RcdDomElement extends RcdXmlElement {
     addChild(child) {
         super.addChild(child);
         if (child) {
-            this.domElement.appendChild(child.getDomElement());
+            this.domElement.appendChild(child.domElement);
         }
         return this;
     }
 
     removeChild(child) {
         super.removeChild(child);
-        this.domElement.removeChild(child.getDomElement());
-        return this;
-    }
-
-    removeAllChildren() {
-        const children = this.children.slice();
-        children.forEach((child) => this.removeChild(child));
+        this.domElement.removeChild(child.domElement);
         return this;
     }
 
@@ -90,7 +41,7 @@ class RcdDomElement extends RcdXmlElement {
         if (parent instanceof RcdDomElement) {
             parent.addChild(this);
         } else {
-            parent.appendChild(this.getDomElement());
+            parent.appendChild(this.domElement);
         }
         this.parent = parent;
         return this;
@@ -101,17 +52,39 @@ class RcdDomElement extends RcdXmlElement {
             if (this.parent instanceof RcdDomElement) {
                 this.parent.removeChild(this);
             } else {
-                this.parent.removeChild(this.getDomElement());
+                this.parent.removeChild(this.domElement);
             }
         }
         this.parent = undefined;
         return this;
     }
+
+    addEventListener(type, listener) {
+        this.domElement.addEventListener(type, listener);
+        return this;
+    }
+
+    removeEventListener(type, listener) {
+        this.domElement.removeEventListener(type, listener);
+        return this;
+    }
+
+    focus() {
+        this.domElement.focus();
+        return this;
+    }
+    
+    setStyle(properties) {
+        for(const propertyName in properties) {
+            this.domElement.style[propertyName] = properties[propertyName];
+        }
+        return this;
+    }
 }
 
 class RcdHtmlElement extends RcdDomElement {
-    constructor(name) {
-        super(name);
+    constructor(tagName) {
+        super(tagName);
         this.classes = [];
         this.eventListeners = {};
         this.eventListenerWrappers = {};
@@ -159,7 +132,7 @@ class RcdHtmlElement extends RcdDomElement {
             let wrapper = (event) => listener(this, event);
             this.eventListenerWrappers[type] = this.eventListenerWrappers[type] || [];
             this.eventListenerWrappers[type].push(wrapper);
-            this.domElement.addEventListener(type, wrapper);
+            super.addEventListener(type, wrapper);
         }
         return this;
     }
@@ -170,7 +143,7 @@ class RcdHtmlElement extends RcdDomElement {
             if (index !== -1) {
                 this.eventListeners[type].splice(index, 1);
                 let wrapper = this.eventListenerWrappers[type].splice(index, 1)[0];
-                this.domElement.removeEventListener(type, wrapper);
+                super.removeEventListener(type, wrapper);
             }
         }
         return this;
@@ -184,16 +157,36 @@ class RcdHtmlElement extends RcdDomElement {
         return this.removeEventListener('click', listener);
     }
 
+    addFocusListener(listener) {
+        return this.addEventListener('focus', listener);
+    }
+
+    removeFocusListener(listener) {
+        return this.removeEventListener('focus', listener);
+    }
+
+    addBlurListener(listener) {
+        return this.addEventListener('blur', listener);
+    }
+
+    removeBlurListener(listener) {
+        return this.removeEventListener('blur', listener);
+    }
+
     addMouseOverListener(listener) {
         return this.addEventListener('mouseover', listener);
+    }
+
+    removeMouseOverListener(listener) {
+        return this.removeEventListener('mouseover', listener);
     }
 
     addMouseOutListener(listener) {
         return this.addEventListener('mouseout', listener);
     }
 
-    addChangeListener(listener) {
-        return this.addEventListener('change', listener);
+    removeMouseOutListener(listener) {
+        return this.removeEventListener('mouseout', listener);
     }
 
     addKeyUpListener(key, listener) {
@@ -204,66 +197,37 @@ class RcdHtmlElement extends RcdDomElement {
         });
     }
 
-    isSelected() {
-        return this.hasClass('selected');
-    }
-
-    select(selected) {
-        if (selected) {
-            this.addClass('selected');
-        } else {
-            this.removeClass('selected');
-        }
-        return this;
-    }
-
-    click() {
-        this.getDomElement().click();
-        return this;
-    }
-
-    setTooltip(tooltip) {
-        this.setAttribute('title', tooltip);
-        return this;
-    }
-
-    setWidth(width) {
-        this.domElement.style.width = width + 'px';
-        return this;
-    }
-
-    setHeight(height) {
-        this.domElement.style.height = height + 'px';
-        return this;
-    }
-
-    setPosition(params) {
-        this.domElement.style.position = params.position || 'fixed';
-        if (params.left !== undefined) {
-            this.domElement.style.left = params.left + 'px';
-        }
-        if (params.right !== undefined) {
-            this.domElement.style.right = params.right + 'px';
-        }
-        if (params.top !== undefined) {
-            this.domElement.style.top = params.top + 'px';
-        }
-        if (params.bottom !== undefined) {
-            this.domElement.style.bottom = params.bottom + 'px';
-        }
-        return this;
-    }
-
-    focus() {
-        this.domElement.focus();
-        return this;
-    }
-
-    show(show) {
+    show(show=true) {
         if (show) {
             return this.removeClass('rcd-hidden');
         } else {
             return this.addClass('rcd-hidden');
         }
+    }
+    
+    hide() {
+        return this.show(false);
+    }
+}
+
+class RcdChangeableElement extends RcdHtmlElement {
+    constructor(tagName) {
+        super(tagName);
+    }
+    
+    addChangeListener(listener) {
+        return this.addEventListener('change', listener);
+    }
+
+    removeChangeListener(listener) {
+        return this.removeEventListener('change', listener);
+    }
+
+    addInputListener(listener) {
+        return this.addEventListener('input', listener);
+    }
+
+    removeInputListener(listener) {
+        return this.removeEventListener('input', listener);
     }
 }

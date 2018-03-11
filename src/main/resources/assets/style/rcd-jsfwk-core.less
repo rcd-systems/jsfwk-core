@@ -15,16 +15,21 @@
     text-decoration: none;
   }
 
-  input {
+  input, textarea {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     border: none;
     border-radius: 0;
     background: none;
+    resize: none;
+  }
+  
+  textarea {
+    padding: 0;
   }
 
-  input:focus {
+  input:focus, textarea:focus {
     outline: none;
   }
 
