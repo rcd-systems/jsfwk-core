@@ -39,7 +39,7 @@ class RcdHistoryRouter extends RcdObject{
                     } else {
                         state += '&'
                     }
-                    state += paramName + '=' + params[paramName];
+                    state += paramName + '=' + encodeURIComponent(params[paramName]);
                 }
             }
         }
@@ -82,7 +82,7 @@ class RcdHistoryRouter extends RcdObject{
             const parametersString = currentState.substring(parametersIndex + 1);
             parametersString.split('&').forEach((parameterEntry) => {
                 const parameterEntryValue = parameterEntry.split('=');
-                parameters[parameterEntryValue[0]] = parameterEntryValue[1];
+                parameters[parameterEntryValue[0]] = decodeURIComponent(parameterEntryValue[1]);
             });
         }
         return parameters;

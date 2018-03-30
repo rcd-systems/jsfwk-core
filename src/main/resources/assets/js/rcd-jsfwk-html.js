@@ -1,13 +1,20 @@
 class RcdDomElement extends RcdXmlElement {
-    constructor(tagName) {
+    constructor(tagName, namespaceURI) {
         super(tagName);
-        this.domElement = document.createElement(tagName);
+        this.namespaceURI = namespaceURI;
+        this.domElement = namespaceURI ? document.createElementNS(namespaceURI, tagName) : document.createElement(tagName);
         this.parent;
     }
 
     setAttribute(key, value) {
         super.setAttribute(key, value);
         this.domElement.setAttribute(key, value);
+        return this;
+    }
+
+    setAttributeNS(namespaceURI, key, value) {
+        super.setAttribute(key, value); //TODO
+        this.domElement.setAttributeNS(namespaceURI, key, value);
         return this;
     }
 
@@ -83,8 +90,8 @@ class RcdDomElement extends RcdXmlElement {
 }
 
 class RcdHtmlElement extends RcdDomElement {
-    constructor(tagName) {
-        super(tagName);
+    constructor(tagName, namespaceURI) {
+        super(tagName, namespaceURI);
         this.classes = [];
         this.eventListeners = {};
         this.eventListenerWrappers = {};
