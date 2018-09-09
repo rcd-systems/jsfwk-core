@@ -136,6 +136,11 @@ class RcdSelectElement extends RcdChangeableElement {
         super('select');
         this.options = [];
     }
+    
+    clear() {
+        this.options = [];
+        return super.clear();
+    }
 
     addOption(optionText) {
         const optionElement = this.createOptionElement(optionText);
