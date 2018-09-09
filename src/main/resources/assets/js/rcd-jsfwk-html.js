@@ -33,8 +33,11 @@ class RcdDomElement extends RcdXmlElement {
     }
 
     removeChild(child) {
-        super.removeChild(child);
-        this.domElement.removeChild(child.domElement);
+        const index = this.children.indexOf(child);
+        if (index > -1) {
+            super.removeChild(child);
+            this.domElement.removeChild(child.domElement);
+        }
         return this;
     }
 
