@@ -8,8 +8,16 @@
   <description>Rcd Javascript Framework Core</description>
 
   <build>
+    <resources>
+      <!-- Do not JS files. See JS Merge below -->
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+        <excludes>
+          <exclude>assets/js/**</exclude>
+        </excludes>
+      </resource>
+    </resources>
     <plugins>
-
       <!-- JS Merge -->
       <plugin>
         <groupId>org.zcore.maven</groupId>
