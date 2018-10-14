@@ -58,10 +58,10 @@ class RcdHistoryRouter extends RcdObject{
             const route = parametersIndex == -1 ? state : state.substring(0, parametersIndex);
             if (RcdHistoryRouter.getInstance().routes[route]) {
                 RcdHistoryRouter.getInstance().routes[route]();
+                return RcdHistoryRouter;
             }
-        } else {
-            RcdHistoryRouter.getInstance().defaultRoute();
         }
+        RcdHistoryRouter.getInstance().defaultRoute();
         return RcdHistoryRouter;
     }
 

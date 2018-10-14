@@ -16,6 +16,20 @@ class RcdPElement extends RcdHtmlElement {
     }
 }
 
+class RcdAElement extends RcdHtmlElement {
+    constructor(linkDisplay, href) {
+        super('a');
+        this.linkDisplay = linkDisplay;
+        this.href = href;
+    }
+
+    init() {
+        return super.init()
+            .setAttribute('href', this.href)
+            .setText(this.linkDisplay);
+    }
+}
+
 class RcdHeaderElement extends RcdHtmlElement {
     constructor() {
         super('header');
@@ -136,7 +150,7 @@ class RcdSelectElement extends RcdChangeableElement {
         super('select');
         this.options = [];
     }
-    
+
     clear() {
         this.options = [];
         return super.clear();
@@ -228,12 +242,12 @@ class RcdTextAreaElement extends RcdChangeableElement {
         this.domElement.placeholder = placeholder;
         return this;
     }
-    
+
     setRows(rows) {
         this.domElement.rows = rows;
         return this;
     }
-    
+
     setCols(cols) {
         this.domElement.cols = cols;
         return this;
