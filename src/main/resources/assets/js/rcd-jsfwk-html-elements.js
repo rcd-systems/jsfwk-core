@@ -28,6 +28,11 @@ class RcdAElement extends RcdHtmlElement {
             .setAttribute('href', this.href)
             .setText(this.linkDisplay);
     }
+
+    setHref(href) {
+        this.href = href;
+        return this.setAttribute('href', href);
+    }
 }
 
 class RcdHeaderElement extends RcdHtmlElement {

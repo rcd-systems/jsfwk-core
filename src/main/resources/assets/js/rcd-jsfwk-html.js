@@ -8,7 +8,11 @@ class RcdDomElement extends RcdXmlElement {
 
     setAttribute(key, value) {
         super.setAttribute(key, value);
-        this.domElement.setAttribute(key, value);
+        if(value) {
+            this.domElement.setAttribute(key, value);
+        } else {
+            this.domElement.removeAttribute(key);
+        }
         return this;
     }
 
