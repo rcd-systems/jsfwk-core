@@ -33,6 +33,10 @@ class RcdAElement extends RcdHtmlElement {
         this.href = href;
         return this.setAttribute('href', href);
     }
+
+    setStateRef(state, params) {
+        return this.setHref('#' + RcdHistoryRouter.buildState(state, params));
+    }
 }
 
 class RcdHeaderElement extends RcdHtmlElement {

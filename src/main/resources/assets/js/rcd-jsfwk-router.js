@@ -1,4 +1,4 @@
-class RcdHistoryRouter extends RcdObject{
+class RcdHistoryRouter extends RcdObject {
     constructor() {
         super();
         this.routes = {};
@@ -28,11 +28,11 @@ class RcdHistoryRouter extends RcdObject{
         return RcdHistoryRouter;
     }
 
-    static setState(state, params) {
+    static buildState(state, params) {
         if (state && params) {
             state += '?';
             let firstParameter = true;
-            for(const paramName in params) {
+            for (const paramName in params) {
                 if (params[paramName]) {
                     if (firstParameter) {
                         firstParameter = false;
@@ -43,7 +43,12 @@ class RcdHistoryRouter extends RcdObject{
                 }
             }
         }
-        
+        return state;
+    }
+
+    static setState(state, params) {
+        state = RcdHistoryRouter.buildState(state, params);
+
         if (state) {
             history.pushState(state, null, '#' + state);
         } else {
