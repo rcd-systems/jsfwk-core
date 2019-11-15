@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>systems.rcd.js.fwk.core</groupId>
   <artifactId>rcd-jsfwk-core</artifactId>
-  <version>3.1.0</version>
+  <version>3.1.1</version>
   <name>Rcd Javascript Framework Core</name>
   <description>Rcd Javascript Framework Core</description>
 
@@ -20,31 +20,18 @@
     <plugins>
       <!-- JS Merge -->
       <plugin>
-        <groupId>org.zcore.maven</groupId>
-        <artifactId>merge-maven-plugin</artifactId>
-        <version>0.0.3</version>
+        <groupId>systems.rcd.maven</groupId>
+        <artifactId>include-maven-plugin</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
         <executions>
           <execution>
-            <id>merge-js</id>
             <phase>process-resources</phase>
             <goals>
-              <goal>merge</goal>
+              <goal>include</goal>
             </goals>
             <configuration>
-              <mergers>
-                <merger>
-                  <target>${project.basedir}/target/classes/assets/js/rcd-jsfwk-core.js</target>
-                  <sources>
-                    <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-base.js</source>
-                    <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-xml.js</source>
-                    <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-html.js</source>
-                    <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-html-elements.js</source>
-                    <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-html-text.js</source>
-                    <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-router.js</source>
-                    <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-time.js</source>
-                  </sources>
-                </merger>
-              </mergers>
+              <source>${project.basedir}/src/main/resources/assets/js/rcd-jsfwk-core.js</source>
+              <target>${project.basedir}/target/classes/assets/js/rcd-jsfwk-core.js</target>
             </configuration>
           </execution>
         </executions>
