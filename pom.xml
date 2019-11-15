@@ -22,7 +22,7 @@
       <plugin>
         <groupId>systems.rcd.maven</groupId>
         <artifactId>include-maven-plugin</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>0.1.0</version>
         <executions>
           <execution>
             <phase>process-resources</phase>
