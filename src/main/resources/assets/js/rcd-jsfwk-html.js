@@ -48,6 +48,7 @@ class RcdDomElement extends RcdXmlElement {
     clear() {
         super.clear();
         this.domElement.innerHTML = '';
+        return this;
     }
 
     setParent(parent = document.body) {

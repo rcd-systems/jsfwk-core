@@ -24,9 +24,12 @@ class RcdAElement extends RcdHtmlElement {
     }
 
     init() {
-        return super.init()
-            .setAttribute('href', this.href)
-            .setText(this.linkDisplay);
+        super.init()
+            .setAttribute('href', this.href);
+        if (this.linkDisplay) {
+            this.setText(this.linkDisplay);
+        }
+        return this;
     }
 
     setHref(href) {
