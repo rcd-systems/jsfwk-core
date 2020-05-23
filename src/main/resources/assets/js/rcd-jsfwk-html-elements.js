@@ -168,19 +168,30 @@ class RcdSelectElement extends RcdChangeableElement {
         return super.clear();
     }
 
-    addOption(optionText) {
-        const optionElement = this.createOptionElement(optionText);
+    addOption(optionValue, optionText) {
+        if (optionText == null) {
+            optionText = optionValue;
+        }
+        const optionElement = this.createOptionElement(optionValue, optionText);
         this.options.push(optionElement);
         return this.addChild(optionElement)
     }
 
-    addOptions(optionTexts) {
-        optionTexts.forEach(optionText => this.addOption(optionText));
+    addOptions(options) {
+        options.forEach(option => {
+            if (typeof option === 'string') {
+                this.addOption(option)
+            } else {
+                this.addOption(option[0], option[1]);
+            }
+        });
         return this;
     }
 
-    createOptionElement(optionText) {
-        return new RcdOptionElement(optionText).init().setValue(optionText).setText(optionText);
+    createOptionElement(optionValue, optionText) {
+        return new RcdOptionElement().init()
+            .setValue(optionValue)
+            .setText(optionText);
     }
 
     selectIndex(index) {
