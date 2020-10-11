@@ -16,6 +16,32 @@ class RcdPElement extends RcdHtmlElement {
     }
 }
 
+class RcdAElement extends RcdHtmlElement {
+    constructor(linkDisplay, href) {
+        super('a');
+        this.linkDisplay = linkDisplay;
+        this.href = href;
+    }
+
+    init() {
+        super.init()
+            .setAttribute('href', this.href);
+        if (this.linkDisplay) {
+            this.setText(this.linkDisplay);
+        }
+        return this;
+    }
+
+    setHref(href) {
+        this.href = href;
+        return this.setAttribute('href', href);
+    }
+
+    setStateRef(state, params) {
+        return this.setHref('#' + RcdHistoryRouter.buildState(state, params));
+    }
+}
+
 class RcdHeaderElement extends RcdHtmlElement {
     constructor() {
         super('header');
@@ -136,25 +162,36 @@ class RcdSelectElement extends RcdChangeableElement {
         super('select');
         this.options = [];
     }
-    
+
     clear() {
         this.options = [];
         return super.clear();
     }
 
-    addOption(optionText) {
-        const optionElement = this.createOptionElement(optionText);
+    addOption(optionValue, optionText) {
+        if (optionText == null) {
+            optionText = optionValue;
+        }
+        const optionElement = this.createOptionElement(optionValue, optionText);
         this.options.push(optionElement);
         return this.addChild(optionElement)
     }
 
-    addOptions(optionTexts) {
-        optionTexts.forEach(optionText => this.addOption(optionText));
+    addOptions(options) {
+        options.forEach(option => {
+            if (typeof option === 'string') {
+                this.addOption(option)
+            } else {
+                this.addOption(option[0], option[1]);
+            }
+        });
         return this;
     }
 
-    createOptionElement(optionText) {
-        return new RcdOptionElement(optionText).init().setValue(optionText).setText(optionText);
+    createOptionElement(optionValue, optionText) {
+        return new RcdOptionElement().init()
+            .setValue(optionValue)
+            .setText(optionText);
     }
 
     selectIndex(index) {
@@ -228,12 +265,12 @@ class RcdTextAreaElement extends RcdChangeableElement {
         this.domElement.placeholder = placeholder;
         return this;
     }
-    
+
     setRows(rows) {
         this.domElement.rows = rows;
         return this;
     }
-    
+
     setCols(cols) {
         this.domElement.cols = cols;
         return this;
