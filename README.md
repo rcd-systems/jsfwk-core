@@ -1,4 +1,2 @@
-# jsfwk-core
-Rcd Javascript Framework Core
+# Rcd Javascript Framework Core (jsfwk-core)
 
-IN PROGRESS!
