@@ -8,7 +8,7 @@ class RcdDomElement extends RcdXmlElement {
 
     setAttribute(key, value) {
         super.setAttribute(key, value);
-        if(value) {
+        if (value) {
             this.domElement.setAttribute(key, value);
         } else {
             this.domElement.removeAttribute(key);
@@ -88,9 +88,9 @@ class RcdDomElement extends RcdXmlElement {
         this.domElement.focus();
         return this;
     }
-    
+
     setStyle(properties) {
-        for(const propertyName in properties) {
+        for (const propertyName in properties) {
             this.domElement.style[propertyName] = properties[propertyName];
         }
         return this;
@@ -119,7 +119,7 @@ class RcdHtmlElement extends RcdDomElement {
     }
 
     addClass(aClass) {
-        if (!this.hasClass(aClass)) {
+        if (aClass && !this.hasClass(aClass)) {
             this.classes.push(aClass);
             this.setAttribute("class", this.classes.join(' '));
         }
@@ -205,21 +205,21 @@ class RcdHtmlElement extends RcdDomElement {
     }
 
     addKeyUpListener(key, listener) {
-        return this.addEventListener('keyup', (source, event)=> {
+        return this.addEventListener('keyup', (source, event) => {
             if (!key || key === event.key) {
                 listener(source, event);
             }
         });
     }
 
-    show(show=true) {
+    show(show = true) {
         if (show) {
             return this.removeClass('rcd-hidden');
         } else {
             return this.addClass('rcd-hidden');
         }
     }
-    
+
     hide() {
         return this.show(false);
     }
@@ -229,7 +229,7 @@ class RcdChangeableElement extends RcdHtmlElement {
     constructor(tagName) {
         super(tagName);
     }
-    
+
     addChangeListener(listener) {
         return this.addEventListener('change', listener);
     }
