@@ -1,7 +1,7 @@
 class RcdFetch {
 
     static rcdPostJson(input, body, init = {}) {
-        return RcdFetch.postJson(input, init)
+        return RcdFetch.postJson(input, body, init)
             .then(response => response && response.json())
             .then(RcdFetch.handleRcdJsonResponse);
     }
