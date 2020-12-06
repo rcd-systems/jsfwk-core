@@ -64,14 +64,10 @@
 
 
   <distributionManagement>
-    <!--repository>
+    <repository>
       <id>bintray-rcd-systems-rcd-repo</id>
       <name>rcd-systems-rcd-repo</name>
       <url>https://api.bintray.com/maven/rcd-systems/rcd-repo/rcd-jsfwk-core/;publish=1</url>
-    </repository-->
-    <repository>
-      <id>github</id>
-      <url>https://maven.pkg.github.com/GlennRicaud/jsfwk-core</url>
     </repository>
   </distributionManagement>
 </project>
