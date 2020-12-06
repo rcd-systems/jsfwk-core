@@ -28,10 +28,21 @@ class RcdDomElement extends RcdXmlElement {
         return this;
     }
 
-    addChild(child) {
+    addChild(child, append = true) {
         super.addChild(child);
         if (child) {
-            this.domElement.appendChild(child.domElement);
+            if (append) {
+                this.domElement.appendChild(child.domElement);
+            } else {
+                this.domElement.prepend(child.domElement);
+            }
+        }
+        return this;
+    }
+
+    addChildren(children, append) {
+        if (children) {
+            children.forEach(child => this.addChild(child, append));
         }
         return this;
     }
