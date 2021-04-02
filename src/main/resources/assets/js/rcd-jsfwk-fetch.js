@@ -6,6 +6,12 @@ class RcdFetch {
             .then(RcdFetch.handleRcdJsonResponse);
     }
 
+    static rcdGetJson(input, init = {}) {
+        return RcdFetch.fetch(input, init)
+            .then(response => response && response.json())
+            .then(RcdFetch.handleRcdJsonResponse);
+    }
+
     static handleRcdJsonResponse(result) {
         if (result.error) {
             throw result.error;
