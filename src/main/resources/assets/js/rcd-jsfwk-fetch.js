@@ -15,9 +15,13 @@ class RcdFetch {
 
     static postJson(input, body, init = {}) {
         init.headers = init.headers || {};
-        init.headers['Content-Type'] = 'application/json';
         init.method = 'POST';
-        init.body = JSON.stringify(body)
+        if (body instanceof FormData) {
+            init.body = body;
+        } else {
+            init.headers['Content-Type'] = 'application/json';
+            init.body = JSON.stringify(body);
+        }
         return RcdFetch.fetch(input, init);
     }
 
