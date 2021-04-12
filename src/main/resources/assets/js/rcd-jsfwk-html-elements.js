@@ -311,5 +311,29 @@ class RcdH2Element extends RcdHtmlElement {
     }
 }
 
+class RcdLegend extends RcdHtmlElement {
+    constructor(text) {
+        super('legend');
+        this.textBuffer = text;
+    }
+
+    init() {
+        return super.init()
+            .setText(this.textBuffer);
+    }
+}
+
+class RcdLabel extends RcdHtmlElement {
+    constructor() {
+        super('label');
+    }
+}
+
+class RcdFieldset extends RcdHtmlElement {
+    constructor() {
+        super('fieldset');
+    }
+}
+
 
 
