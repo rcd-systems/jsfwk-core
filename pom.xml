@@ -65,9 +65,8 @@
 
   <distributionManagement>
     <repository>
-      <id>bintray-rcd-systems-rcd-repo</id>
-      <name>rcd-systems-rcd-repo</name>
-      <url>https://api.bintray.com/maven/rcd-systems/rcd-repo/rcd-jsfwk-core/;publish=1</url>
+      <id>jfrog</id>
+      <url>https://rcdsystems.jfrog.io/artifactory/maven-public</url>
     </repository>
   </distributionManagement>
 </project>
